@@ -35,6 +35,8 @@ FROM node:alpine
 
 COPY --from=builder /opt/app .
 
+RUN npm install --only=production
+
 USER node
 
 CMD [ "npm", "run", "start:prod" ]

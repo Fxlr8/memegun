@@ -32,7 +32,7 @@ function toBlobAsync(canvas) {
   });
 }
 
-export default class NotFound extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = {
@@ -41,6 +41,7 @@ export default class NotFound extends React.PureComponent { // eslint-disable-li
       opacity: 0.5,
       light: true,
       rendering: false,
+      font: 'Amatic SC'
     };
   }
 
@@ -131,13 +132,23 @@ export default class NotFound extends React.PureComponent { // eslint-disable-li
   }
 
   render() {
-    const { text, lines, imageLink, imageObj, opacity, light, rendering } = this.state;
+    const { text, lines, imageLink, imageObj, opacity, light, rendering, font } = this.state;
     return (
       <div>
         <textarea onChange={this.handleInputChange} name="lines" placeholder="Надписи по одной на строку" value={text} className="input" />
         <div className="container container-inline">
           <input name="imageLink" value={imageLink} onChange={this.handleLinkChange} type="url" className="textInput" placeholder="Ссылка на фоновое изображение, например с unsplash.com" />
           <button onClick={this.save} className="button">Сгенерировать {lines.length ? `${lines.length} шт.` : ''}</button>
+        </div>
+        <div className="container container-inline">
+          <label style={{fontFamily: "Amatic SC"}} className="checkbox--container">
+            <input name="font" onChange={this.handleInputChange} value={'Amatic SC'} checked={font === 'Amatic SC'} type="radio" />
+            <div className="checkmark">Amatic SC</div>
+          </label>
+          <label style={{fontFamily: "PT Sans Caption"}} className="checkbox--container">
+            <input name="font" onChange={this.handleInputChange} value={'PT Sans Caption'} checked={font === 'PT Sans Caption' } type="radio" />
+            <div className="checkmark">PT Sans Caption</div>
+          </label>
         </div>
         <div className="container container-inline">
           {/* <input type="text" className="textInput" placeholder="Вотермарка" />*/}
@@ -150,12 +161,12 @@ export default class NotFound extends React.PureComponent { // eslint-disable-li
         <div className="container">
           <div className="preview">
             {!rendering && lines.map((line, i) => (
-              <Template ref={`stage${i}`} key={i + line} text={line} width={width / 2} height={height / 2} background={imageObj} opacity={opacity} light={light} />
+              <Template ref={`stage${i}`} key={i + line} text={line} width={width / 2} height={height / 2} background={imageObj} opacity={opacity} light={light} font={font} />
             ))}
           </div>
           <div className="hide">
             {lines.map((line, i) => (
-              <Template ref={`stage${i}`} key={i + line} text={line} width={widthHD} height={heightHD} background={imageObj} opacity={opacity} light={light} />
+              <Template ref={`stage${i}`} key={i + line} text={line} width={widthHD} height={heightHD} background={imageObj} opacity={opacity} light={light} font={font} />
             ))}
           </div>
         </div>

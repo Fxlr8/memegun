@@ -16,14 +16,14 @@ class Template extends PureComponent {
       width: this.props.width,
       align: 'center',
       fontSize,
-      fontFamily: 'Amatic SC',
+      fontFamily: this.props.font,
       text: this.props.text,
       padding,
     });
     return text.getHeight();
   }
   render() {
-    const { background, text, width, height, opacity, light } = this.props;
+    const { background, text, width, height, opacity, light, font } = this.props;
     const fontSize = this.getFontSize();
     const padding = this.getPadding();
     const textHeight = this.calculateTextHeight(fontSize, padding);
@@ -38,7 +38,7 @@ class Template extends PureComponent {
             width={width}
             align="center"
             fontSize={fontSize}
-            fontFamily="Amatic SC"
+            fontFamily={font}
             text={text}
             fill={light ? 'black' : 'white'}
             padding={padding}
