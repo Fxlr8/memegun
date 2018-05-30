@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Stage, Layer, Rect, Text, Image as KonvaImage } from 'react-konva';
 import { Text as KonvaText } from 'konva';
-import fileSaver from 'file-saver';
+
+/* eslint-disable */
 
 class Template extends PureComponent {
   getFontSize() {
