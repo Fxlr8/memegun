@@ -151,6 +151,14 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             <input name="font" onChange={this.handleInputChange} value={'PT Sans Caption'} checked={font === 'PT Sans Caption' } type="radio" />
             <div className="checkmark">PT Sans Caption</div>
           </label>
+          <label style={{fontFamily: "Russo One"}} className="checkbox--container">
+            <input name="font" onChange={this.handleInputChange} value={'Russo One'} checked={font === 'Russo One' } type="radio" />
+            <div className="checkmark">Russo One</div>
+          </label>
+          <label style={{fontFamily: "Ubuntu"}} className="checkbox--container">
+            <input name="font" onChange={this.handleInputChange} value={'Ubuntu'} checked={font === 'Ubuntu' } type="radio" />
+            <div className="checkmark">Ubuntu</div>
+          </label>
           <input onChange={this.handleInputChange} name="fontSize" type="range" min="0" value={fontSize} max="1" step="0.01" />
         </div>
         <div className="container container-inline">
