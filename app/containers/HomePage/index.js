@@ -41,7 +41,9 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
       opacity: 0.5,
       light: true,
       rendering: false,
-      font: 'Amatic SC'
+      template: 'quote',
+      font: 'Amatic SC',
+      fontSize: 0.1,
     };
   }
 
@@ -132,7 +134,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
   }
 
   render() {
-    const { text, lines, imageLink, imageObj, opacity, light, rendering, font } = this.state;
+    const { text, lines, imageLink, imageObj, opacity, light, rendering, font, template, fontSize } = this.state;
     return (
       <div>
         <textarea onChange={this.handleInputChange} name="lines" placeholder="Надписи по одной на строку" value={text} className="input" />
@@ -149,6 +151,17 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             <input name="font" onChange={this.handleInputChange} value={'PT Sans Caption'} checked={font === 'PT Sans Caption' } type="radio" />
             <div className="checkmark">PT Sans Caption</div>
           </label>
+          <input onChange={this.handleInputChange} name="fontSize" type="range" min="0" value={fontSize} max="1" step="0.01" />
+        </div>
+        <div className="container container-inline">
+          <label className="checkbox--container">
+            <input name="template" onChange={this.handleInputChange} value={'quote'} checked={template === 'quote'} type="radio" />
+            <div className="checkmark">Шаблон цитаты</div>
+          </label>
+          <label className="checkbox--container">
+            <input name="template" onChange={this.handleInputChange} value={'fact'} checked={template === 'fact' } type="radio" />
+            <div className="checkmark">Шаблон факта</div>
+          </label>
         </div>
         <div className="container container-inline">
           {/* <input type="text" className="textInput" placeholder="Вотермарка" />*/}
@@ -156,17 +169,17 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             <input name="light" onChange={this.handleInputChange} checked={light} type="checkbox" />
             <div className="checkmark">{light ? 'Светлый' : 'Тёмный'}</div>
           </label>
-          <input onChange={this.handleOpacityChange} type="range" min="0" value={opacity} max="1" step="0.01" />
+          <input onChange={this.handleInputChange} name="opacity" type="range" min="0" value={opacity} max="1" step="0.01" />
         </div>
         <div className="container">
           <div className="preview">
             {!rendering && lines.map((line, i) => (
-              <Template ref={`stage${i}`} key={i + line} text={line} width={width / 2} height={height / 2} background={imageObj} opacity={opacity} light={light} font={font} />
+              <Template template={template} fontSize={fontSize} ref={`stage${i}`} key={i + line} text={line} width={width / 2} height={height / 2} background={imageObj} opacity={opacity} light={light} font={font} />
             ))}
           </div>
           <div className="hide">
             {lines.map((line, i) => (
-              <Template ref={`stage${i}`} key={i + line} text={line} width={widthHD} height={heightHD} background={imageObj} opacity={opacity} light={light} font={font} />
+              <Template template={template} fontSize={fontSize} ref={`stage${i}`} key={i + line} text={line} width={widthHD} height={heightHD} background={imageObj} opacity={opacity} light={light} font={font} />
             ))}
           </div>
         </div>

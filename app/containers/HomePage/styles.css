@@ -65,6 +65,7 @@
     padding: 20px;
     background-color: #222;
     color: #FFF;
+    white-space: nowrap;
 }
 
 /* On mouse-over, add a grey background color */
